@@ -25,6 +25,9 @@
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
+  "bin": {
+    "pokecode": "./bin/pokecode.js"
+  },
   "contributes": {
     "viewsContainers": {
       "activitybar": [
