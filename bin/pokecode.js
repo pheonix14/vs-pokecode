@@ -560,16 +560,16 @@ var ITEMS_DATABASE = {
     catchBonus: 1,
     description: "A standard device for catching wild Pok\xE9mon. Earned every 25 keystrokes.",
     count: 10,
-    icon: "\u{1F534}"
+    icon: "[PB]"
   },
   greatball: {
     id: "greatball",
     name: "Great Ball",
     category: "BALL",
     catchBonus: 1.5,
-    description: "A good, high-performance Ball that provides a higher catch rate than a standard Pok\xE9 Ball.",
+    description: "A good, high-performance Ball that provides a higher catch rate than a standard Poke Ball.",
     count: 3,
-    icon: "\u{1F535}"
+    icon: "[GB]"
   },
   ultraball: {
     id: "ultraball",
@@ -578,7 +578,7 @@ var ITEMS_DATABASE = {
     catchBonus: 2,
     description: "An ultra-high-performance Ball with a higher catch rate than a Great Ball.",
     count: 1,
-    icon: "\u{1F7E1}"
+    icon: "[UB]"
   },
   masterball: {
     id: "masterball",
@@ -586,27 +586,27 @@ var ITEMS_DATABASE = {
     category: "BALL",
     catchBonus: 999,
     // Guaranteed catch
-    description: "The best Ball with the ultimate performance. It catches any wild Pok\xE9mon without fail.",
+    description: "The best Ball with the ultimate performance. It catches any wild Pokemon without fail.",
     count: 0,
-    icon: "\u{1F7E3}"
+    icon: "[MB]"
   },
   razzberry: {
     id: "razzberry",
     name: "Razz Berry",
     category: "BERRY",
     catchBonus: 1.25,
-    description: "Feed this to a wild Pok\xE9mon to make it calmer and easier to catch on your next throw.",
+    description: "Feed this to a wild Pokemon to make it calmer and easier to catch on your next throw.",
     count: 5,
-    icon: "\u{1F353}"
+    icon: "[RZ]"
   },
   goldenrazz: {
     id: "goldenrazz",
     name: "Golden Razz Berry",
     category: "BERRY",
     catchBonus: 2.5,
-    description: "A miraculous berry that drastically calms wild Pok\xE9mon and boosts catch chances.",
+    description: "A miraculous berry that drastically calms wild Pokemon and boosts catch chances.",
     count: 1,
-    icon: "\u2728"
+    icon: "[GR]"
   }
 };
 
@@ -790,7 +790,7 @@ var SpawnEngine = class {
       turnsRemaining: 5,
       // Turns before fleeing
       catchSuccessRate: species.baseCatchRate,
-      logs: [`A wild ${species.name}${isShiny ? " \u2728 (SHINY!)" : ""} appeared!`],
+      logs: [`A wild ${species.name}${isShiny ? " [SHINY]" : ""} appeared!`],
       createdAt: Date.now()
     };
   }
@@ -976,7 +976,7 @@ var ANSI_SPRITES = {
     `${O} \u2588${Y}\u2588${O}\u2588\u2588\u2588${K}\u2584\u2584\u2584${O}\u2588\u2588\u2588${Y}\u2588${O}\u2588 ${R}`,
     `${W}  \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  ${R}`,
     `${BR}  \u2584\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2584  ${R}`,
-    `${Y} \u26A1  \u2588\u2588\u2588   \u2588\u2588\u2588    ${R}`
+    `${Y}  *   \u2588\u2588\u2588   \u2588\u2588\u2588    ${R}`
   ],
   // Bulbasaur (ID: 1)
   1: [
@@ -1017,7 +1017,7 @@ var ANSI_SPRITES = {
     `${O}    \u2588\u2588${B}\u2588${O}\u2588\u2588\u2588\u2588${B}\u2588${O}\u2588\u2588   ${R}`,
     `${O}    \u2588\u2588\u2588${W}\u2584\u2584\u2584\u2584${O}\u2588\u2588\u2588   ${R}`,
     `${O}    \u2584\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2584   ${R}`,
-    `${O}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588  ${R}${RED}\u{1F525}${R}`,
+    `${O}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588  ${R}${RED}*${R}`,
     `${O}  \u2584\u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588\u2584 ${R}${Y}\u2588${R}`,
     `${O}   \u2580\u2588\u2588\u2580\u2580\u2580\u2580\u2580\u2580\u2588\u2588\u2580  ${R}`
   ],
@@ -1028,7 +1028,7 @@ var ANSI_SPRITES = {
     `${RED}    \u2588\u2588${B}\u2588${RED}\u2588\u2588\u2588\u2588${B}\u2588${RED}\u2588\u2588  ${R}`,
     `${RED}    \u2588\u2588\u2588${W}\u2580\u2580\u2580\u2580${RED}\u2588\u2588\u2588  ${R}`,
     `${RED}    \u2584\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2584   ${R}`,
-    `${RED}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${RED}\u2588\u2588\u2588\u2588  ${R}${RED}\u{1F525}${R}`,
+    `${RED}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${RED}\u2588\u2588\u2588\u2588  ${R}${RED}*${R}`,
     `${RED}  \u2584\u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588${RED}\u2588\u2588\u2588\u2588\u2584 ${R}${Y}\u2588\u2588${R}`,
     `${RED}   \u2580\u2588\u2588\u2580\u2580\u2580\u2580\u2580\u2580\u2588\u2588\u2580  ${R}`
   ],
@@ -1039,7 +1039,7 @@ var ANSI_SPRITES = {
     `${T}\u2580\u2588\u2588\u2588${R}${O} \u2588\u2588${B}\u2588${O}\u2588\u2588\u2588\u2588${B}\u2588${O}\u2588\u2588 ${R}${T}\u2588\u2588\u2588\u2580${R}`,
     `${O}  \u2580\u2588\u2584\u2588\u2588${W}\u2580\u2580\u2580\u2580${O}\u2588\u2588\u2584\u2588\u2580  ${R}`,
     `${O}    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588    ${R}`,
-    `${O}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588 ${R}${RED}\u{1F525}${R}`,
+    `${O}   \u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588 ${R}${RED}*${R}`,
     `${O}  \u2584\u2588\u2588\u2588\u2588${Y}\u2588\u2588\u2588\u2588\u2588\u2588${O}\u2588\u2588\u2588\u2588\u2584${R}${Y}\u2588${R}`,
     `${O}   \u2580\u2588\u2588\u2580\u2580    \u2580\u2580\u2588\u2588\u2580 ${R}`
   ],
@@ -1280,10 +1280,10 @@ var WordTracker = class {
         const lvlRes = this.evolutionEngine.addXp(buddy, xpGain);
         if (lvlRes.evolved && lvlRes.newSpecies) {
           levelUpMsg = `
-  ${C.magenta}${C.bold}\u{1F31F} WHAT?! ${buddy.nickname} evolved into ${lvlRes.newSpecies.name}!${C.reset}`;
+  ${C.magenta}${C.bold}WHAT?! ${buddy.nickname} evolved into ${lvlRes.newSpecies.name}!${C.reset}`;
         } else if (lvlRes.leveledUp) {
           levelUpMsg = `
-  ${C.cyan}${C.bold}\u2728 ${buddy.nickname} leveled up to Lv. ${buddy.level}!${C.reset}`;
+  ${C.cyan}${C.bold}[LEVEL UP] ${buddy.nickname} grew to Lv. ${buddy.level}!${C.reset}`;
         }
       }
       this.saveManager.saveNow(trainer);
@@ -1296,18 +1296,18 @@ var WordTracker = class {
   }
   renderSpawnBanner(encounter, caught, extraMsg = "") {
     const { pokemon, species } = encounter;
-    const shiny = pokemon.isShiny ? ` ${C.yellow}${C.bold}\u2728 (SHINY!)${C.reset}` : "";
+    const shiny = pokemon.isShiny ? ` ${C.yellow}${C.bold}[SHINY]${C.reset}` : "";
     const spriteLines = getSprite(species.id);
     console.log("");
     console.log(`${C.yellow}\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557${C.reset}`);
-    console.log(`${C.yellow}\u2551${C.reset}  ${C.bold}\u26A1 A WILD POK\xC9MON APPEARED!${C.reset} ${C.dim}(8 Words Typed in Terminal)${C.reset}        ${C.yellow}\u2551${C.reset}`);
+    console.log(`${C.yellow}\u2551${C.reset}  ${C.bold}WILD POKEMON ENCOUNTER!${C.reset} ${C.dim}(8 Words Typed in Terminal)${C.reset}               ${C.yellow}\u2551${C.reset}`);
     console.log(`${C.yellow}\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563${C.reset}`);
     const infoLines = [
       ` ${C.bold}${C.white}${species.name}${C.reset}${shiny}  ${C.cyan}Lv.${pokemon.level}${C.reset}`,
       ` ${C.dim}Type:${C.reset} ${species.types.join("/")}  |  ${C.dim}Rarity:${C.reset} ${species.rarity}`,
       ` ${C.dim}HP:${C.reset}   ${pokemon.stats.hp} / ${pokemon.stats.maxHp}`,
       ` `,
-      caught ? ` ${C.red}\u{1F534}${C.reset} ${C.bold}Threw Pok\xE9 Ball...${C.reset} ${C.green}${C.bold}\u2B50 Gotcha! ${species.name} caught!${C.reset}` : ` ${C.red}\u{1F534}${C.reset} ${C.dim}Threw Pok\xE9 Ball... Oh no! ${species.name} escaped!${C.reset}`,
+      caught ? ` ${C.red}[PB]${C.reset} ${C.bold}Threw Poke Ball...${C.reset} ${C.green}${C.bold}Gotcha! ${species.name} was caught!${C.reset}` : ` ${C.red}[PB]${C.reset} ${C.dim}Threw Poke Ball... Oh no! ${species.name} escaped!${C.reset}`,
       ` ${C.dim}Total Words Typed:${C.reset} ${C.yellow}${this.session.totalWords}${C.reset} | ${C.dim}Spawns:${C.reset} ${C.green}${this.session.totalSpawns}${C.reset}`
     ];
     const maxLines = Math.max(spriteLines.length, infoLines.length);
@@ -1323,9 +1323,9 @@ var WordTracker = class {
 `);
   }
   sendDesktopNotification(pokemonName, level, isShiny, caught = true) {
-    const title = `\u26A1 VS POKECODE: Wild ${pokemonName}!`;
-    const shinyStr = isShiny ? " \u2728 Shiny!" : "";
-    const body = caught ? `A wild Lv.${level} ${pokemonName}${shinyStr} appeared and was caught in your Pok\xE9 Ball! \u{1F534}` : `A wild Lv.${level} ${pokemonName}${shinyStr} appeared, but fled!`;
+    const title = `VS POKECODE: Wild ${pokemonName}!`;
+    const shinyStr = isShiny ? " [Shiny]" : "";
+    const body = caught ? `A wild Lv.${level} ${pokemonName}${shinyStr} appeared and was caught in your Poke Ball!` : `A wild Lv.${level} ${pokemonName}${shinyStr} appeared, but fled!`;
     (0, import_child_process.exec)(`notify-send -t 3000 "${title}" "${body}" 2>/dev/null`, () => {
     });
   }
@@ -1414,9 +1414,9 @@ function startInteractiveWatcher() {
   tracker2.setEnabled(true);
   console.log(`
 ${C2.bold}${C2.cyan}\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557${C2.reset}`);
-  console.log(`${C2.bold}${C2.cyan}\u2551   \u{1F3AE} VS POKECODE - Interactive Terminal Typing Mode           \u2551${C2.reset}`);
+  console.log(`${C2.bold}${C2.cyan}\u2551   VS POKECODE - Interactive Terminal Typing Mode              \u2551${C2.reset}`);
   console.log(`${C2.bold}${C2.cyan}\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D${C2.reset}`);
-  console.log(`${C2.dim}Type any text or code below. Every 8 words, a wild Pok\xE9mon spawns!${C2.reset}`);
+  console.log(`${C2.dim}Type any text or code below. Every 8 words, a wild Pokemon spawns!${C2.reset}`);
   console.log(`${C2.dim}Press Ctrl+C or type 'exit' to quit.${C2.reset}
 `);
   const rl = readline.createInterface({
@@ -1500,12 +1500,12 @@ function showStats() {
   console.log(`  ${C3.bold}Words Typed:${C3.reset} ${C3.green}${session.totalWords} words${C3.reset} | ${C3.yellow}${session.totalSpawns} Pok\xE9mon spawned${C3.reset}`);
   console.log(`  ${C3.bold}Next Spawn:${C3.reset}  ${session.wordsTyped} / ${session.targetWords} words typed`);
   if (buddy) {
-    const shiny = buddy.isShiny ? " \u2728 (SHINY!)" : "";
+    const shiny = buddy.isShiny ? " [SHINY]" : "";
     console.log(`  ${C3.bold}Companion:${C3.reset}   ${C3.magenta}${buddy.nickname}${shiny}${C3.reset} (Lv. ${buddy.level} | ${buddy.types.join("/")})`);
     console.log(`  ${C3.bold}Buddy EXP:${C3.reset}   ${buddy.currentXp} / ${buddy.xpToNextLevel} to next level`);
   }
-  console.log(`  ${C3.bold}Pok\xE9 Bag:${C3.reset}    \u{1F534} ${trainer.inventory.pokeball || 0} Pok\xE9 Balls | \u{1F535} ${trainer.inventory.greatball || 0} Great | \u{1F7E1} ${trainer.inventory.ultraball || 0} Ultra`);
-  console.log(`  ${C3.bold}Party:${C3.reset}       ${trainer.party.length} / 6 Pok\xE9mon (${trainer.box?.length || 0} in PC storage)
+  console.log(`  ${C3.bold}Poke Bag:${C3.reset}    [PB] ${trainer.inventory.pokeball || 0} Poke Balls | [GB] ${trainer.inventory.greatball || 0} Great | [UB] ${trainer.inventory.ultraball || 0} Ultra`);
+  console.log(`  ${C3.bold}Party:${C3.reset}       ${trainer.party.length} / 6 Pokemon (${trainer.box?.length || 0} in PC storage)
 `);
 }
 function showDex() {
@@ -1515,12 +1515,12 @@ function showDex() {
   const entries = Object.values(trainer.pokedex);
   const caughtCount = entries.filter((e) => e.caught).length;
   console.log(`${C3.bold}${C3.cyan}\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557${C3.reset}`);
-  console.log(`${C3.bold}${C3.cyan}\u2551                  POK\xC9DEX ARCHIVE                              \u2551${C3.reset}`);
+  console.log(`${C3.bold}${C3.cyan}\u2551                  POKEDEX ARCHIVE                              \u2551${C3.reset}`);
   console.log(`${C3.bold}${C3.cyan}\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D${C3.reset}`);
   console.log(`  ${C3.bold}Completion:${C3.reset} ${C3.green}${caughtCount} Caught${C3.reset} / ${entries.length} Seen
 `);
   entries.forEach((e) => {
-    const status = e.caught ? `${C3.green}${e.shinyCaught ? "\u2728 Caught (Shiny)" : "\u2714 Caught"}${C3.reset}` : `${C3.yellow}\u{1F441} Seen${C3.reset}`;
+    const status = e.caught ? `${C3.green}${e.shinyCaught ? "[Caught Shiny]" : "[Caught]"}${C3.reset}` : `${C3.yellow}[Seen]${C3.reset}`;
     console.log(`  #${String(e.speciesId).padStart(3, "0")} : ${status}`);
   });
   console.log("");
@@ -1535,8 +1535,8 @@ switch (command) {
   case "install":
     installer.installToBashrc();
     tracker.setEnabled(true);
-    console.log(`${C3.green}${C3.bold}\u26A1 VS POKECODE Terminal Plugin Enabled!${C3.reset}`);
-    console.log(`A wild Pok\xE9mon will now spawn directly in your terminal every 8 words typed!`);
+    console.log(`${C3.green}${C3.bold}VS POKECODE Terminal Plugin Enabled!${C3.reset}`);
+    console.log(`A wild Pokemon will now spawn directly in your terminal every 8 words typed!`);
     console.log(`${C3.dim}Tip: Run 'source ~/.bashrc' or open a new terminal window to activate.${C3.reset}
 `);
     break;

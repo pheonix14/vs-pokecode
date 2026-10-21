@@ -46,7 +46,7 @@ export class SpawnEngine {
       status: 'ACTIVE',
       turnsRemaining: 5, // Turns before fleeing
       catchSuccessRate: species.baseCatchRate,
-      logs: [`A wild ${species.name}${isShiny ? ' ✨ (SHINY!)' : ''} appeared!`],
+      logs: [`A wild ${species.name}${isShiny ? ' [SHINY]' : ''} appeared!`],
       createdAt: Date.now()
     };
   }

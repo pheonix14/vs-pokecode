@@ -10,7 +10,7 @@ import { EvolutionEngine } from '../src/core/evolution-engine';
 import { GameEngine } from '../src/core/game-engine';
 import { POKEMON_BY_ID } from '../src/data/pokemon-db';
 
-console.log('🧪 Starting VS POKECODE Verification Suite...\n');
+console.log('Starting VS POKECODE Verification Suite...\n');
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -18,10 +18,10 @@ let testsFailed = 0;
 function runTest(name: string, fn: () => void) {
   try {
     fn();
-    console.log(`  ✅ PASS: ${name}`);
+    console.log(`  [PASS] ${name}`);
     testsPassed++;
   } catch (err: any) {
-    console.error(`  ❌ FAIL: ${name}`);
+    console.error(`  [FAIL] ${name}`);
     console.error(`     Error: ${err.message}`);
     testsFailed++;
   }

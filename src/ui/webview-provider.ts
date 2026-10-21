@@ -94,15 +94,15 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
     <header class="trainer-hud">
       <div class="trainer-header-row">
         <div class="trainer-title">
-          <span class="trainer-badge">⚡</span>
+          <span class="trainer-badge">*</span>
           <span id="trainer-name" class="pixel-text">Ash Koder</span>
         </div>
         <div class="trainer-level-tag">Lv. <span id="trainer-level">1</span></div>
       </div>
       <div class="trainer-stats-row">
-        <div class="stat-pill"><span class="icon">⌨️</span> <span id="stat-keystrokes">0</span> keys</div>
-        <div class="stat-pill"><span class="icon">⚡</span> <span id="stat-wpm">0</span> WPM</div>
-        <div class="stat-pill streak-pill"><span class="icon">🔥</span> <span id="stat-streak">0</span>x</div>
+        <div class="stat-pill"><span class="icon">Keys:</span> <span id="stat-keystrokes">0</span></div>
+        <div class="stat-pill"><span class="icon">WPM:</span> <span id="stat-wpm">0</span></div>
+        <div class="stat-pill streak-pill"><span class="icon">Streak:</span> <span id="stat-streak">0</span>x</div>
       </div>
 
       <!-- Encounter Meter Bar -->
@@ -119,10 +119,10 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
 
     <!-- Navigation Tabs -->
     <nav class="hud-tabs">
-      <button class="tab-btn active" data-tab="battle">⚔️ FIELD</button>
-      <button class="tab-btn" data-tab="buddy">🐾 BUDDY</button>
-      <button class="tab-btn" data-tab="party">🎒 PARTY</button>
-      <button class="tab-btn" data-tab="pokedex">📖 DEX</button>
+      <button class="tab-btn active" data-tab="battle">FIELD</button>
+      <button class="tab-btn" data-tab="buddy">BUDDY</button>
+      <button class="tab-btn" data-tab="party">PARTY</button>
+      <button class="tab-btn" data-tab="pokedex">DEX</button>
     </nav>
 
     <!-- TAB 1: FIELD / BATTLE ENCOUNTER -->
@@ -130,12 +130,12 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
       <!-- Active Wild Encounter Arena -->
       <div id="encounter-card" class="arena-card hidden">
         <div class="arena-banner">
-          <span class="wild-tag">WILD POKÉMON!</span>
+          <span class="wild-tag">WILD POKEMON!</span>
           <span id="wild-rarity" class="rarity-badge common">COMMON</span>
         </div>
         <div class="wild-sprite-wrapper">
-          <div id="wild-sparkles" class="sparkles hidden">✨</div>
-          <img id="wild-sprite" class="pokemon-sprite floating" src="" alt="Wild Pokémon" />
+          <div id="wild-sparkles" class="sparkles hidden">*</div>
+          <img id="wild-sprite" class="pokemon-sprite floating" src="" alt="Wild Pokemon" />
           <div class="shadow-disc"></div>
         </div>
         <div class="wild-info-row">
@@ -145,29 +145,29 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
         <div id="wild-types" class="types-row"></div>
         <div class="catch-gauge-wrapper">
           <div class="catch-chance-label">Catch Chance: <span id="catch-chance-val">50%</span></div>
-          <div id="encounter-log" class="encounter-log-box">A wild Pokémon appeared!</div>
+          <div id="encounter-log" class="encounter-log-box">A wild Pokemon appeared!</div>
         </div>
 
         <!-- Encounter Actions -->
         <div class="action-grid">
           <button id="btn-pokeball" class="action-btn ball-btn" data-ball="pokeball">
-            <span class="btn-icon">🔴</span>
-            <span class="btn-label">Poké Ball (<span id="count-pokeball">0</span>)</span>
+            <span class="btn-icon">[PB]</span>
+            <span class="btn-label">Poke Ball (<span id="count-pokeball">0</span>)</span>
           </button>
           <button id="btn-greatball" class="action-btn ball-btn" data-ball="greatball">
-            <span class="btn-icon">🔵</span>
+            <span class="btn-icon">[GB]</span>
             <span class="btn-label">Great Ball (<span id="count-greatball">0</span>)</span>
           </button>
           <button id="btn-ultraball" class="action-btn ball-btn" data-ball="ultraball">
-            <span class="btn-icon">🟡</span>
+            <span class="btn-icon">[UB]</span>
             <span class="btn-label">Ultra Ball (<span id="count-ultraball">0</span>)</span>
           </button>
           <button id="btn-razz" class="action-btn berry-btn" data-berry="razzberry">
-            <span class="btn-icon">🍓</span>
+            <span class="btn-icon">[RZ]</span>
             <span class="btn-label">Razz Berry (<span id="count-razzberry">0</span>)</span>
           </button>
           <button id="btn-flee" class="action-btn flee-btn">
-            <span class="btn-icon">🏃</span>
+            <span class="btn-icon">[X]</span>
             <span class="btn-label">Run Away</span>
           </button>
         </div>
@@ -175,17 +175,13 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
 
       <!-- Peaceful Field Screen (When no encounter active) -->
       <div id="idle-field" class="idle-field">
-        <div class="field-sky">
-          <div class="ambient-cloud cloud-1">☁️</div>
-          <div class="ambient-cloud cloud-2">☁️</div>
-        </div>
         <div class="buddy-showcase">
           <div class="buddy-header">
             <span class="label">ACTIVE COMPANION</span>
             <span id="idle-buddy-level" class="level-tag">Lv. 5</span>
           </div>
           <div class="sprite-stage">
-            <img id="idle-buddy-sprite" class="buddy-sprite walking" src="" alt="Buddy Pokémon" />
+            <img id="idle-buddy-sprite" class="buddy-sprite walking" src="" alt="Buddy Pokemon" />
             <div class="shadow-disc"></div>
           </div>
           <div id="idle-buddy-name" class="buddy-name-text">Pikachu</div>
@@ -203,8 +199,8 @@ export class PokeWebviewProvider implements vscode.WebviewViewProvider {
         </div>
 
         <div class="typing-callout">
-          <p class="instruction-text">Type code in any editor to earn EXP, find Poké Balls, and discover wild Pokémon!</p>
-          <button id="btn-spawn-test" class="secondary-btn">⚡ Summon Wild Pokémon (Test)</button>
+          <p class="instruction-text">Type code in any editor to earn EXP, find Poke Balls, and discover wild Pokemon!</p>
+          <button id="btn-spawn-test" class="secondary-btn">Summon Wild Pokemon (Test)</button>
         </div>
       </div>
     </main>

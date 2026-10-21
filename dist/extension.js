@@ -567,16 +567,16 @@ var ITEMS_DATABASE = {
     catchBonus: 1,
     description: "A standard device for catching wild Pok\xE9mon. Earned every 25 keystrokes.",
     count: 10,
-    icon: "\u{1F534}"
+    icon: "[PB]"
   },
   greatball: {
     id: "greatball",
     name: "Great Ball",
     category: "BALL",
     catchBonus: 1.5,
-    description: "A good, high-performance Ball that provides a higher catch rate than a standard Pok\xE9 Ball.",
+    description: "A good, high-performance Ball that provides a higher catch rate than a standard Poke Ball.",
     count: 3,
-    icon: "\u{1F535}"
+    icon: "[GB]"
   },
   ultraball: {
     id: "ultraball",
@@ -585,7 +585,7 @@ var ITEMS_DATABASE = {
     catchBonus: 2,
     description: "An ultra-high-performance Ball with a higher catch rate than a Great Ball.",
     count: 1,
-    icon: "\u{1F7E1}"
+    icon: "[UB]"
   },
   masterball: {
     id: "masterball",
@@ -593,27 +593,27 @@ var ITEMS_DATABASE = {
     category: "BALL",
     catchBonus: 999,
     // Guaranteed catch
-    description: "The best Ball with the ultimate performance. It catches any wild Pok\xE9mon without fail.",
+    description: "The best Ball with the ultimate performance. It catches any wild Pokemon without fail.",
     count: 0,
-    icon: "\u{1F7E3}"
+    icon: "[MB]"
   },
   razzberry: {
     id: "razzberry",
     name: "Razz Berry",
     category: "BERRY",
     catchBonus: 1.25,
-    description: "Feed this to a wild Pok\xE9mon to make it calmer and easier to catch on your next throw.",
+    description: "Feed this to a wild Pokemon to make it calmer and easier to catch on your next throw.",
     count: 5,
-    icon: "\u{1F353}"
+    icon: "[RZ]"
   },
   goldenrazz: {
     id: "goldenrazz",
     name: "Golden Razz Berry",
     category: "BERRY",
     catchBonus: 2.5,
-    description: "A miraculous berry that drastically calms wild Pok\xE9mon and boosts catch chances.",
+    description: "A miraculous berry that drastically calms wild Pokemon and boosts catch chances.",
     count: 1,
-    icon: "\u2728"
+    icon: "[GR]"
   }
 };
 
@@ -904,7 +904,7 @@ var SpawnEngine = class {
       turnsRemaining: 5,
       // Turns before fleeing
       catchSuccessRate: species.baseCatchRate,
-      logs: [`A wild ${species.name}${isShiny ? " \u2728 (SHINY!)" : ""} appeared!`],
+      logs: [`A wild ${species.name}${isShiny ? " [SHINY]" : ""} appeared!`],
       createdAt: Date.now()
     };
   }
@@ -1301,16 +1301,16 @@ var PokeStatusBar = class {
     }
     this.statusBarItem.backgroundColor = void 0;
     const buddyName = buddy ? `${buddy.nickname} Lv.${buddy.level}` : "No Buddy";
-    const streakText = stats.currentStreak > 5 ? `\u{1F525} ${stats.currentStreak}x` : "";
+    const streakText = stats.currentStreak > 5 ? `Streak: ${stats.currentStreak}x` : "";
     const meterPct = Math.round(stats.encounterMeter);
-    this.statusBarItem.text = `$(hubot) ${buddyName} ${streakText ? `| ${streakText} ` : ""}| \u{1F43E} ${meterPct}%`;
+    this.statusBarItem.text = `$(hubot) ${buddyName} ${streakText ? `| ${streakText} ` : ""}| Encounter: ${meterPct}%`;
     this.statusBarItem.tooltip = [
       `VS POKECODE Status`,
       `Buddy: ${buddy?.name || "None"} (Level ${buddy?.level || 0})`,
       `Streak: ${stats.currentStreak} (Multiplier: ${stats.multiplier.toFixed(1)}x)`,
       `Typing Speed: ${stats.wpm} WPM`,
       `Wild Encounter Meter: ${meterPct}%`,
-      `Click to open Pok\xE9mon Trainer Panel`
+      `Click to open Pokemon Trainer Panel`
     ].join("\n");
   }
   dispose() {
@@ -1395,15 +1395,15 @@ var PokeWebviewProvider = class {
     <header class="trainer-hud">
       <div class="trainer-header-row">
         <div class="trainer-title">
-          <span class="trainer-badge">\u26A1</span>
+          <span class="trainer-badge">*</span>
           <span id="trainer-name" class="pixel-text">Ash Koder</span>
         </div>
         <div class="trainer-level-tag">Lv. <span id="trainer-level">1</span></div>
       </div>
       <div class="trainer-stats-row">
-        <div class="stat-pill"><span class="icon">\u2328\uFE0F</span> <span id="stat-keystrokes">0</span> keys</div>
-        <div class="stat-pill"><span class="icon">\u26A1</span> <span id="stat-wpm">0</span> WPM</div>
-        <div class="stat-pill streak-pill"><span class="icon">\u{1F525}</span> <span id="stat-streak">0</span>x</div>
+        <div class="stat-pill"><span class="icon">Keys:</span> <span id="stat-keystrokes">0</span></div>
+        <div class="stat-pill"><span class="icon">WPM:</span> <span id="stat-wpm">0</span></div>
+        <div class="stat-pill streak-pill"><span class="icon">Streak:</span> <span id="stat-streak">0</span>x</div>
       </div>
 
       <!-- Encounter Meter Bar -->
@@ -1420,10 +1420,10 @@ var PokeWebviewProvider = class {
 
     <!-- Navigation Tabs -->
     <nav class="hud-tabs">
-      <button class="tab-btn active" data-tab="battle">\u2694\uFE0F FIELD</button>
-      <button class="tab-btn" data-tab="buddy">\u{1F43E} BUDDY</button>
-      <button class="tab-btn" data-tab="party">\u{1F392} PARTY</button>
-      <button class="tab-btn" data-tab="pokedex">\u{1F4D6} DEX</button>
+      <button class="tab-btn active" data-tab="battle">FIELD</button>
+      <button class="tab-btn" data-tab="buddy">BUDDY</button>
+      <button class="tab-btn" data-tab="party">PARTY</button>
+      <button class="tab-btn" data-tab="pokedex">DEX</button>
     </nav>
 
     <!-- TAB 1: FIELD / BATTLE ENCOUNTER -->
@@ -1431,12 +1431,12 @@ var PokeWebviewProvider = class {
       <!-- Active Wild Encounter Arena -->
       <div id="encounter-card" class="arena-card hidden">
         <div class="arena-banner">
-          <span class="wild-tag">WILD POK\xC9MON!</span>
+          <span class="wild-tag">WILD POKEMON!</span>
           <span id="wild-rarity" class="rarity-badge common">COMMON</span>
         </div>
         <div class="wild-sprite-wrapper">
-          <div id="wild-sparkles" class="sparkles hidden">\u2728</div>
-          <img id="wild-sprite" class="pokemon-sprite floating" src="" alt="Wild Pok\xE9mon" />
+          <div id="wild-sparkles" class="sparkles hidden">*</div>
+          <img id="wild-sprite" class="pokemon-sprite floating" src="" alt="Wild Pokemon" />
           <div class="shadow-disc"></div>
         </div>
         <div class="wild-info-row">
@@ -1446,29 +1446,29 @@ var PokeWebviewProvider = class {
         <div id="wild-types" class="types-row"></div>
         <div class="catch-gauge-wrapper">
           <div class="catch-chance-label">Catch Chance: <span id="catch-chance-val">50%</span></div>
-          <div id="encounter-log" class="encounter-log-box">A wild Pok\xE9mon appeared!</div>
+          <div id="encounter-log" class="encounter-log-box">A wild Pokemon appeared!</div>
         </div>
 
         <!-- Encounter Actions -->
         <div class="action-grid">
           <button id="btn-pokeball" class="action-btn ball-btn" data-ball="pokeball">
-            <span class="btn-icon">\u{1F534}</span>
-            <span class="btn-label">Pok\xE9 Ball (<span id="count-pokeball">0</span>)</span>
+            <span class="btn-icon">[PB]</span>
+            <span class="btn-label">Poke Ball (<span id="count-pokeball">0</span>)</span>
           </button>
           <button id="btn-greatball" class="action-btn ball-btn" data-ball="greatball">
-            <span class="btn-icon">\u{1F535}</span>
+            <span class="btn-icon">[GB]</span>
             <span class="btn-label">Great Ball (<span id="count-greatball">0</span>)</span>
           </button>
           <button id="btn-ultraball" class="action-btn ball-btn" data-ball="ultraball">
-            <span class="btn-icon">\u{1F7E1}</span>
+            <span class="btn-icon">[UB]</span>
             <span class="btn-label">Ultra Ball (<span id="count-ultraball">0</span>)</span>
           </button>
           <button id="btn-razz" class="action-btn berry-btn" data-berry="razzberry">
-            <span class="btn-icon">\u{1F353}</span>
+            <span class="btn-icon">[RZ]</span>
             <span class="btn-label">Razz Berry (<span id="count-razzberry">0</span>)</span>
           </button>
           <button id="btn-flee" class="action-btn flee-btn">
-            <span class="btn-icon">\u{1F3C3}</span>
+            <span class="btn-icon">[X]</span>
             <span class="btn-label">Run Away</span>
           </button>
         </div>
@@ -1476,17 +1476,13 @@ var PokeWebviewProvider = class {
 
       <!-- Peaceful Field Screen (When no encounter active) -->
       <div id="idle-field" class="idle-field">
-        <div class="field-sky">
-          <div class="ambient-cloud cloud-1">\u2601\uFE0F</div>
-          <div class="ambient-cloud cloud-2">\u2601\uFE0F</div>
-        </div>
         <div class="buddy-showcase">
           <div class="buddy-header">
             <span class="label">ACTIVE COMPANION</span>
             <span id="idle-buddy-level" class="level-tag">Lv. 5</span>
           </div>
           <div class="sprite-stage">
-            <img id="idle-buddy-sprite" class="buddy-sprite walking" src="" alt="Buddy Pok\xE9mon" />
+            <img id="idle-buddy-sprite" class="buddy-sprite walking" src="" alt="Buddy Pokemon" />
             <div class="shadow-disc"></div>
           </div>
           <div id="idle-buddy-name" class="buddy-name-text">Pikachu</div>
@@ -1504,8 +1500,8 @@ var PokeWebviewProvider = class {
         </div>
 
         <div class="typing-callout">
-          <p class="instruction-text">Type code in any editor to earn EXP, find Pok\xE9 Balls, and discover wild Pok\xE9mon!</p>
-          <button id="btn-spawn-test" class="secondary-btn">\u26A1 Summon Wild Pok\xE9mon (Test)</button>
+          <p class="instruction-text">Type code in any editor to earn EXP, find Poke Balls, and discover wild Pokemon!</p>
+          <button id="btn-spawn-test" class="secondary-btn">Summon Wild Pokemon (Test)</button>
         </div>
       </div>
     </main>
@@ -1578,13 +1574,13 @@ function activate(context) {
     onEncounterSpawned: (encounter) => {
       statusBar.update();
       webviewProvider.postMessage("ENCOUNTER_SPAWN", encounter);
-      const shinyTag = encounter.pokemon.isShiny ? " \u2728 SHINY" : "";
+      const shinyTag = encounter.pokemon.isShiny ? " [SHINY]" : "";
       vscode3.window.showInformationMessage(
-        `\u26A1 A wild ${encounter.species.name}${shinyTag} (Lv.${encounter.pokemon.level}) appeared!`,
-        "Throw Pok\xE9 Ball",
+        `A wild ${encounter.species.name}${shinyTag} (Lv.${encounter.pokemon.level}) appeared!`,
+        "Throw Poke Ball",
         "Open Field"
       ).then((selection) => {
-        if (selection === "Throw Pok\xE9 Ball") {
+        if (selection === "Throw Poke Ball") {
           const res = gameEngine.throwBall("pokeball");
           vscode3.window.showInformationMessage(res.message);
         } else if (selection === "Open Field") {
@@ -1595,10 +1591,10 @@ function activate(context) {
     onCatchSuccess: (pokemon, isNewPokedex) => {
       statusBar.update();
       webviewProvider.postMessage("CATCH_SUCCESS", pokemon);
-      const shinyStr = pokemon.isShiny ? " \u2728 Shiny" : "";
-      const dexStr = isNewPokedex ? " Registered to Pok\xE9dex!" : "";
+      const shinyStr = pokemon.isShiny ? " [Shiny]" : "";
+      const dexStr = isNewPokedex ? " Registered to Pokedex!" : "";
       vscode3.window.showInformationMessage(
-        `\u{1F389} Gotcha! ${pokemon.nickname}${shinyStr} was caught!${dexStr}`
+        `Gotcha! ${pokemon.nickname}${shinyStr} was caught!${dexStr}`
       );
     },
     onLevelUp: (pokemon, result) => {
@@ -1606,14 +1602,14 @@ function activate(context) {
       if (result.evolved && result.newSpecies) {
         webviewProvider.postMessage("EVOLVE", { pokemon, result });
         vscode3.window.showInformationMessage(
-          `\u{1F31F} What? ${result.oldSpecies?.name || pokemon.nickname} is evolving... Congratulations! Your Pok\xE9mon evolved into ${result.newSpecies.name}!`
+          `What? ${result.oldSpecies?.name || pokemon.nickname} is evolving... Congratulations! Your Pokemon evolved into ${result.newSpecies.name}!`
         );
       } else {
         webviewProvider.postMessage("LEVEL_UP", pokemon);
       }
     },
     onItemDrop: (itemName, count) => {
-      vscode3.window.setStatusBarMessage(`\u{1F392} Found ${count}x ${itemName}!`, 2500);
+      vscode3.window.setStatusBarMessage(`Found ${count}x ${itemName}!`, 2500);
     },
     onNotification: (msg, type) => {
       if (type === "warning") {
@@ -1663,7 +1659,7 @@ function activate(context) {
   context.subscriptions.push(
     vscode3.commands.registerCommand("vs-pokecode.spawnWild", () => {
       gameEngine.forceSpawn();
-      vscode3.window.showInformationMessage("\u26A1 Summoned a wild Pok\xE9mon encounter!");
+      vscode3.window.showInformationMessage("Summoned a wild Pokemon encounter!");
     })
   );
   context.subscriptions.push(
@@ -1678,7 +1674,7 @@ function activate(context) {
       const trainer = gameEngine.getTrainer();
       const buddy = gameEngine.getBuddy();
       vscode3.window.showInformationMessage(
-        `\u{1F3C6} ${trainer.name} (Lv.${trainer.level}) | Buddy: ${buddy?.name || "None"} (Lv.${buddy?.level || 0}) | Keys: ${stats.keystrokes} | WPM: ${stats.wpm} | Max Streak: ${stats.maxStreak}x`
+        `${trainer.name} (Lv.${trainer.level}) | Buddy: ${buddy?.name || "None"} (Lv.${buddy?.level || 0}) | Keys: ${stats.keystrokes} | WPM: ${stats.wpm} | Max Streak: ${stats.maxStreak}x`
       );
     })
   );

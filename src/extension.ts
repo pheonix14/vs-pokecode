@@ -22,13 +22,13 @@ export function activate(context: vscode.ExtensionContext) {
       statusBar.update();
       webviewProvider.postMessage('ENCOUNTER_SPAWN', encounter);
 
-      const shinyTag = encounter.pokemon.isShiny ? ' ✨ SHINY' : '';
+      const shinyTag = encounter.pokemon.isShiny ? ' [SHINY]' : '';
       vscode.window.showInformationMessage(
-        `⚡ A wild ${encounter.species.name}${shinyTag} (Lv.${encounter.pokemon.level}) appeared!`,
-        'Throw Poké Ball',
+        `A wild ${encounter.species.name}${shinyTag} (Lv.${encounter.pokemon.level}) appeared!`,
+        'Throw Poke Ball',
         'Open Field'
       ).then(selection => {
-        if (selection === 'Throw Poké Ball') {
+        if (selection === 'Throw Poke Ball') {
           const res = gameEngine.throwBall('pokeball');
           vscode.window.showInformationMessage(res.message);
         } else if (selection === 'Open Field') {
@@ -39,10 +39,10 @@ export function activate(context: vscode.ExtensionContext) {
     onCatchSuccess: (pokemon: PokemonInstance, isNewPokedex: boolean) => {
       statusBar.update();
       webviewProvider.postMessage('CATCH_SUCCESS', pokemon);
-      const shinyStr = pokemon.isShiny ? ' ✨ Shiny' : '';
-      const dexStr = isNewPokedex ? ' Registered to Pokédex!' : '';
+      const shinyStr = pokemon.isShiny ? ' [Shiny]' : '';
+      const dexStr = isNewPokedex ? ' Registered to Pokedex!' : '';
       vscode.window.showInformationMessage(
-        `🎉 Gotcha! ${pokemon.nickname}${shinyStr} was caught!${dexStr}`
+        `Gotcha! ${pokemon.nickname}${shinyStr} was caught!${dexStr}`
       );
     },
     onLevelUp: (pokemon: PokemonInstance, result: LevelUpResult) => {
@@ -50,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
       if (result.evolved && result.newSpecies) {
         webviewProvider.postMessage('EVOLVE', { pokemon, result });
         vscode.window.showInformationMessage(
-          `🌟 What? ${result.oldSpecies?.name || pokemon.nickname} is evolving... Congratulations! Your Pokémon evolved into ${result.newSpecies.name}!`
+          `What? ${result.oldSpecies?.name || pokemon.nickname} is evolving... Congratulations! Your Pokemon evolved into ${result.newSpecies.name}!`
         );
       } else {
         webviewProvider.postMessage('LEVEL_UP', pokemon);
@@ -58,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
     },
     onItemDrop: (itemName: string, count: number) => {
       // Optional subtle notification on item drops
-      vscode.window.setStatusBarMessage(`🎒 Found ${count}x ${itemName}!`, 2500);
+      vscode.window.setStatusBarMessage(`Found ${count}x ${itemName}!`, 2500);
     },
     onNotification: (msg: string, type: 'info' | 'warning' | 'success') => {
       if (type === 'warning') {
@@ -124,7 +124,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('vs-pokecode.spawnWild', () => {
       gameEngine.forceSpawn();
-      vscode.window.showInformationMessage('⚡ Summoned a wild Pokémon encounter!');
+      vscode.window.showInformationMessage('Summoned a wild Pokemon encounter!');
     })
   );
 
@@ -142,7 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
       const buddy = gameEngine.getBuddy();
 
       vscode.window.showInformationMessage(
-        `🏆 ${trainer.name} (Lv.${trainer.level}) | Buddy: ${buddy?.name || 'None'} (Lv.${buddy?.level || 0}) | Keys: ${stats.keystrokes} | WPM: ${stats.wpm} | Max Streak: ${stats.maxStreak}x`
+        `${trainer.name} (Lv.${trainer.level}) | Buddy: ${buddy?.name || 'None'} (Lv.${buddy?.level || 0}) | Keys: ${stats.keystrokes} | WPM: ${stats.wpm} | Max Streak: ${stats.maxStreak}x`
       );
     })
   );

@@ -61,12 +61,12 @@ function showStats() {
   console.log(`  ${C.bold}Words Typed:${C.reset} ${C.green}${session.totalWords} words${C.reset} | ${C.yellow}${session.totalSpawns} Pokémon spawned${C.reset}`);
   console.log(`  ${C.bold}Next Spawn:${C.reset}  ${session.wordsTyped} / ${session.targetWords} words typed`);
   if (buddy) {
-    const shiny = buddy.isShiny ? ' ✨ (SHINY!)' : '';
+    const shiny = buddy.isShiny ? ' [SHINY]' : '';
     console.log(`  ${C.bold}Companion:${C.reset}   ${C.magenta}${buddy.nickname}${shiny}${C.reset} (Lv. ${buddy.level} | ${buddy.types.join('/')})`);
     console.log(`  ${C.bold}Buddy EXP:${C.reset}   ${buddy.currentXp} / ${buddy.xpToNextLevel} to next level`);
   }
-  console.log(`  ${C.bold}Poké Bag:${C.reset}    🔴 ${trainer.inventory.pokeball || 0} Poké Balls | 🔵 ${trainer.inventory.greatball || 0} Great | 🟡 ${trainer.inventory.ultraball || 0} Ultra`);
-  console.log(`  ${C.bold}Party:${C.reset}       ${trainer.party.length} / 6 Pokémon (${trainer.box?.length || 0} in PC storage)\n`);
+  console.log(`  ${C.bold}Poke Bag:${C.reset}    [PB] ${trainer.inventory.pokeball || 0} Poke Balls | [GB] ${trainer.inventory.greatball || 0} Great | [UB] ${trainer.inventory.ultraball || 0} Ultra`);
+  console.log(`  ${C.bold}Party:${C.reset}       ${trainer.party.length} / 6 Pokemon (${trainer.box?.length || 0} in PC storage)\n`);
 }
 
 function showDex() {
@@ -77,14 +77,14 @@ function showDex() {
   const caughtCount = entries.filter(e => e.caught).length;
 
   console.log(`${C.bold}${C.cyan}╔═══════════════════════════════════════════════════════════════╗${C.reset}`);
-  console.log(`${C.bold}${C.cyan}║                  POKÉDEX ARCHIVE                              ║${C.reset}`);
+  console.log(`${C.bold}${C.cyan}║                  POKEDEX ARCHIVE                              ║${C.reset}`);
   console.log(`${C.bold}${C.cyan}╚═══════════════════════════════════════════════════════════════╝${C.reset}`);
   console.log(`  ${C.bold}Completion:${C.reset} ${C.green}${caughtCount} Caught${C.reset} / ${entries.length} Seen\n`);
 
   entries.forEach(e => {
     const status = e.caught
-      ? `${C.green}${e.shinyCaught ? '✨ Caught (Shiny)' : '✔ Caught'}${C.reset}`
-      : `${C.yellow}👁 Seen${C.reset}`;
+      ? `${C.green}${e.shinyCaught ? '[Caught Shiny]' : '[Caught]'}${C.reset}`
+      : `${C.yellow}[Seen]${C.reset}`;
     console.log(`  #${String(e.speciesId).padStart(3, '0')} : ${status}`);
   });
   console.log('');
@@ -103,8 +103,8 @@ switch (command) {
   case 'install':
     installer.installToBashrc();
     tracker.setEnabled(true);
-    console.log(`${C.green}${C.bold}⚡ VS POKECODE Terminal Plugin Enabled!${C.reset}`);
-    console.log(`A wild Pokémon will now spawn directly in your terminal every 8 words typed!`);
+    console.log(`${C.green}${C.bold}VS POKECODE Terminal Plugin Enabled!${C.reset}`);
+    console.log(`A wild Pokemon will now spawn directly in your terminal every 8 words typed!`);
     console.log(`${C.dim}Tip: Run 'source ~/.bashrc' or open a new terminal window to activate.${C.reset}\n`);
     break;
 

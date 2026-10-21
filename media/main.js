@@ -196,15 +196,15 @@
         break;
       case 'ENCOUNTER_SPAWN':
         sound.playEncounter();
-        showToast(`⚡ A wild ${message.payload.species.name} appeared!`);
+        showToast(`A wild ${message.payload.species.name} appeared!`);
         break;
       case 'CATCH_SUCCESS':
         sound.playCatchSuccess();
-        showToast(`🎉 Gotcha! ${message.payload.nickname} was caught!`, 4000);
+        showToast(`Gotcha! ${message.payload.nickname} was caught!`, 4000);
         break;
       case 'LEVEL_UP':
         sound.playLevelUp();
-        showToast(`✨ ${message.payload.nickname} grew to Level ${message.payload.level}!`, 4000);
+        showToast(`${message.payload.nickname} grew to Level ${message.payload.level}!`, 4000);
         break;
     }
   });
@@ -341,14 +341,14 @@
           <img class="party-sprite" src="${pkmn.spriteUrl}" alt="${pkmn.name}">
           <div class="party-meta">
             <div class="party-name-row">
-              <span>${pkmn.nickname}${pkmn.isShiny ? ' ✨' : ''}</span>
+              <span>${pkmn.nickname}${pkmn.isShiny ? ' [Shiny]' : ''}</span>
               <span style="color: var(--accent);">Lv. ${pkmn.level}</span>
             </div>
             <div class="party-sub-row">
               <span>${pkmn.types.join('/')}</span>
-              <span>•</span>
+              <span>-</span>
               <span>HP ${pkmn.stats.hp}/${pkmn.stats.maxHp}</span>
-              ${isBuddy ? '<span style="color: #f59e0b; margin-left: auto; font-weight: bold;">⭐ BUDDY</span>' : ''}
+              ${isBuddy ? '<span style="color: #f59e0b; margin-left: auto; font-weight: bold;">[BUDDY]</span>' : ''}
             </div>
           </div>
         `;
@@ -377,7 +377,7 @@
         cell.innerHTML = `
           <img class="pokedex-cell-sprite" src="${spriteUrl}" alt="#${entry.speciesId}">
           <span>#${entry.speciesId}</span>
-          <span>${entry.caught ? (entry.shinyCaught ? '✨ Caught' : 'Caught') : (entry.seen ? 'Seen' : '???')}</span>
+          <span>${entry.caught ? (entry.shinyCaught ? '[Caught Shiny]' : '[Caught]') : (entry.seen ? '[Seen]' : '???')}</span>
         `;
         elPokedexGrid.appendChild(cell);
       });

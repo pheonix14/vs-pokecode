@@ -30,17 +30,17 @@ export class PokeStatusBar {
 
     this.statusBarItem.backgroundColor = undefined;
     const buddyName = buddy ? `${buddy.nickname} Lv.${buddy.level}` : 'No Buddy';
-    const streakText = stats.currentStreak > 5 ? `🔥 ${stats.currentStreak}x` : '';
+    const streakText = stats.currentStreak > 5 ? `Streak: ${stats.currentStreak}x` : '';
     const meterPct = Math.round(stats.encounterMeter);
 
-    this.statusBarItem.text = `$(hubot) ${buddyName} ${streakText ? `| ${streakText} ` : ''}| 🐾 ${meterPct}%`;
+    this.statusBarItem.text = `$(hubot) ${buddyName} ${streakText ? `| ${streakText} ` : ''}| Encounter: ${meterPct}%`;
     this.statusBarItem.tooltip = [
       `VS POKECODE Status`,
       `Buddy: ${buddy?.name || 'None'} (Level ${buddy?.level || 0})`,
       `Streak: ${stats.currentStreak} (Multiplier: ${stats.multiplier.toFixed(1)}x)`,
       `Typing Speed: ${stats.wpm} WPM`,
       `Wild Encounter Meter: ${meterPct}%`,
-      `Click to open Pokémon Trainer Panel`
+      `Click to open Pokemon Trainer Panel`
     ].join('\n');
   }
 

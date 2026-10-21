@@ -178,9 +178,9 @@ export class WordTracker {
         const xpGain = Math.floor(species.baseXpYield * 0.7);
         const lvlRes = this.evolutionEngine.addXp(buddy, xpGain);
         if (lvlRes.evolved && lvlRes.newSpecies) {
-          levelUpMsg = `\n  ${C.magenta}${C.bold}🌟 WHAT?! ${buddy.nickname} evolved into ${lvlRes.newSpecies.name}!${C.reset}`;
+          levelUpMsg = `\n  ${C.magenta}${C.bold}WHAT?! ${buddy.nickname} evolved into ${lvlRes.newSpecies.name}!${C.reset}`;
         } else if (lvlRes.leveledUp) {
-          levelUpMsg = `\n  ${C.cyan}${C.bold}✨ ${buddy.nickname} leveled up to Lv. ${buddy.level}!${C.reset}`;
+          levelUpMsg = `\n  ${C.cyan}${C.bold}[LEVEL UP] ${buddy.nickname} grew to Lv. ${buddy.level}!${C.reset}`;
         }
       }
 
@@ -195,12 +195,12 @@ export class WordTracker {
 
   private renderSpawnBanner(encounter: any, caught: boolean, extraMsg: string = ''): void {
     const { pokemon, species } = encounter;
-    const shiny = pokemon.isShiny ? ` ${C.yellow}${C.bold}✨ (SHINY!)${C.reset}` : '';
+    const shiny = pokemon.isShiny ? ` ${C.yellow}${C.bold}[SHINY]${C.reset}` : '';
     const spriteLines = getSprite(species.id);
 
     console.log('');
     console.log(`${C.yellow}╔══════════════════════════════════════════════════════════════════════════╗${C.reset}`);
-    console.log(`${C.yellow}║${C.reset}  ${C.bold}⚡ A WILD POKÉMON APPEARED!${C.reset} ${C.dim}(8 Words Typed in Terminal)${C.reset}        ${C.yellow}║${C.reset}`);
+    console.log(`${C.yellow}║${C.reset}  ${C.bold}WILD POKEMON ENCOUNTER!${C.reset} ${C.dim}(8 Words Typed in Terminal)${C.reset}               ${C.yellow}║${C.reset}`);
     console.log(`${C.yellow}╠══════════════════════════════════════════════════════════════════════════╣${C.reset}`);
 
     const infoLines = [
@@ -209,8 +209,8 @@ export class WordTracker {
       ` ${C.dim}HP:${C.reset}   ${pokemon.stats.hp} / ${pokemon.stats.maxHp}`,
       ` `,
       caught
-        ? ` ${C.red}🔴${C.reset} ${C.bold}Threw Poké Ball...${C.reset} ${C.green}${C.bold}⭐ Gotcha! ${species.name} caught!${C.reset}`
-        : ` ${C.red}🔴${C.reset} ${C.dim}Threw Poké Ball... Oh no! ${species.name} escaped!${C.reset}`,
+        ? ` ${C.red}[PB]${C.reset} ${C.bold}Threw Poke Ball...${C.reset} ${C.green}${C.bold}Gotcha! ${species.name} was caught!${C.reset}`
+        : ` ${C.red}[PB]${C.reset} ${C.dim}Threw Poke Ball... Oh no! ${species.name} escaped!${C.reset}`,
       ` ${C.dim}Total Words Typed:${C.reset} ${C.yellow}${this.session.totalWords}${C.reset} | ${C.dim}Spawns:${C.reset} ${C.green}${this.session.totalSpawns}${C.reset}`
     ];
 
@@ -229,10 +229,10 @@ export class WordTracker {
   }
 
   private sendDesktopNotification(pokemonName: string, level: number, isShiny: boolean, caught: boolean = true): void {
-    const title = `⚡ VS POKECODE: Wild ${pokemonName}!`;
-    const shinyStr = isShiny ? ' ✨ Shiny!' : '';
+    const title = `VS POKECODE: Wild ${pokemonName}!`;
+    const shinyStr = isShiny ? ' [Shiny]' : '';
     const body = caught
-      ? `A wild Lv.${level} ${pokemonName}${shinyStr} appeared and was caught in your Poké Ball! 🔴`
+      ? `A wild Lv.${level} ${pokemonName}${shinyStr} appeared and was caught in your Poke Ball!`
       : `A wild Lv.${level} ${pokemonName}${shinyStr} appeared, but fled!`;
 
     exec(`notify-send -t 3000 "${title}" "${body}" 2>/dev/null`, () => {});

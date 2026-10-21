@@ -19,9 +19,9 @@ export function startInteractiveWatcher(): void {
   tracker.setEnabled(true);
 
   console.log(`\n${C.bold}${C.cyan}╔═══════════════════════════════════════════════════════════════╗${C.reset}`);
-  console.log(`${C.bold}${C.cyan}║   🎮 VS POKECODE - Interactive Terminal Typing Mode           ║${C.reset}`);
+  console.log(`${C.bold}${C.cyan}║   VS POKECODE - Interactive Terminal Typing Mode              ║${C.reset}`);
   console.log(`${C.bold}${C.cyan}╚═══════════════════════════════════════════════════════════════╝${C.reset}`);
-  console.log(`${C.dim}Type any text or code below. Every 8 words, a wild Pokémon spawns!${C.reset}`);
+  console.log(`${C.dim}Type any text or code below. Every 8 words, a wild Pokemon spawns!${C.reset}`);
   console.log(`${C.dim}Press Ctrl+C or type 'exit' to quit.${C.reset}\n`);
 
   const rl = readline.createInterface({

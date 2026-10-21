@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n==================================================`);
-  console.log(`🎮 VS POKECODE Browser Preview Server is LIVE!`);
-  console.log(`👉 Open http://localhost:${PORT} in your browser.`);
+  console.log(`VS POKECODE Browser Preview Server is LIVE!`);
+  console.log(`Open http://localhost:${PORT} in your browser.`);
   console.log(`==================================================\n`);
 });
