@@ -1,0 +1,130 @@
+{
+  "name": "vs-pokecode",
+  "displayName": "VS POKECODE",
+  "description": "Spawn, battle, catch, and evolve Pokémon in real-time as you type code in VS Code!",
+  "version": "0.1.0",
+  "publisher": "pokecode",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Themes",
+    "Education"
+  ],
+  "keywords": [
+    "pokemon",
+    "typing",
+    "gamification",
+    "companion",
+    "coding",
+    "pokedex",
+    "sprites"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pokecode-activitybar",
+          "title": "VS POKECODE",
+          "icon": "media/icons/pokeball.svg"
+        }
+      ]
+    },
+    "views": {
+      "pokecode-activitybar": [
+        {
+          "type": "webview",
+          "id": "pokecode.mainView",
+          "name": "PokeCode Companion"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vs-pokecode.openPanel",
+        "title": "Open Companion & Pokédex Panel",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.spawnWild",
+        "title": "Summon Wild Pokémon (Encounter)",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.catchPokemon",
+        "title": "Throw Poké Ball",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.showStats",
+        "title": "View Trainer & Typing Stats",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.setBuddy",
+        "title": "Select Active Companion Buddy",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.exportSave",
+        "title": "Export Trainer Save Data",
+        "category": "VS POKECODE"
+      },
+      {
+        "command": "vs-pokecode.resetGame",
+        "title": "Reset Trainer Journey",
+        "category": "VS POKECODE"
+      }
+    ],
+    "configuration": {
+      "title": "VS POKECODE",
+      "properties": {
+        "vs-pokecode.encounterRate": {
+          "type": "number",
+          "default": 50,
+          "description": "Approximate keystrokes needed to trigger a wild Pokémon encounter."
+        },
+        "vs-pokecode.soundEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable retro 8-bit sound effects for encounters and catches."
+        },
+        "vs-pokecode.autoCatch": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically throw standard Poké Balls when wild Pokémon appear."
+        },
+        "vs-pokecode.spawnOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Grant bonus encounter progress whenever you save a file."
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pokecode/vs-pokecode"
+  },
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "vscode:prepublish": "npm run build",
+    "package": "vsce package --no-dependencies --allow-missing-repository",
+    "test": "npx ts-node tests/test-runner.ts",
+    "dev:preview": "node scripts/dev-preview-server.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.18.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.24.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
