@@ -115,7 +115,9 @@
     "url": "https://github.com/pokecode/vs-pokecode"
   },
   "scripts": {
-    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "build:ext": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "build:cli": "esbuild ./src/terminal/cli.ts --bundle --outfile=bin/pokecode.js --format=cjs --platform=node",
+    "build": "npm run build:ext && npm run build:cli && chmod +x bin/pokecode.js",
     "watch": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
     "vscode:prepublish": "npm run build",
     "package": "vsce package --no-dependencies --allow-missing-repository",
